@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../component/ProductCard';
 import {useSearchParams} from 'react-router-dom';
+import {productAction} from "../redux/actions/productAction"
+import {useDispatch, useSelector} from "react-redux"
 
 const ProductAll = () => {
-  const [productList, setProductList] = useState([]);
+  const productList= useSelector((state) => state.productList);
   const [query, setQuery] = useSearchParams();
+  const dispatch = useDispatch();
 
   const getProducts = async() =>{
     let keyword = query.get('q')||'';
-    let url = `https://my-json-server.typicode.com/jay-brew/miniProject/products?q=${keyword}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setProductList(data);
-  }
-  // api 호출 : userEffect()
-  // life cycle
-  // 빈 값은 UI 그리고나서 최초 한 번만 실행된다.
+    console.log("query ? ", keyword);
+    dispatch(productAction.getProducts(keyword));
+  };
+  
   useEffect(() => {
     getProducts();
   },[query]);

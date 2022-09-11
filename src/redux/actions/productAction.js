@@ -3,8 +3,9 @@ function getProducts(keyword){
         let url = `https://my-json-server.typicode.com/jay-brew/miniProject/products?q=${keyword}`;
         let response = await fetch(url);
         let data = await response.json();
-        console.log(data)
+        dispatch({type:"GET_PRODUCT_SUCCESS",payload:{data}});
     };
 }
 
-export const productAction={getProducts};
+
+export const productAction={getProducts}
