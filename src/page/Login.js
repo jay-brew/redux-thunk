@@ -12,7 +12,6 @@ const Login = ({setAuthenticate}) => {
 
   // form 을 사용할 때 refresh 되는 것을 막아주려면 preventDefault를 사용하면 된다.
   const LoginUser = (event) => {
-    console.log("hi");
     event.preventDefault();
     dispatch(authenticateAction.login(id,password));
     navigate('/');

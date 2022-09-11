@@ -9,9 +9,10 @@ function authenticateReducer(state=initialState, action){
     switch(type){
         case "LOGIN_SUCCESS" :
             console.log("login success reducer")
-            return {...state, id:payload.id, password:payload.password, authenticate:true}
+            console.log(initialState);
+            return {...state, id:payload.id, password:payload.password, authenticate:true};
         default :
-            return {...state}
+            return {...state};
 
     }
 }
